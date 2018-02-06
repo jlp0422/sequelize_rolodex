@@ -11,12 +11,14 @@
 <body>
   <div class="container">
     <h1>{{ pageh1 }}</h1>
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs" style="margin-bottom:15px">
       <li class="nav-item">
-        <a href="/" class="nav-link">Home</a>
+        <a href="/" class="nav-link {%if path === '/'%}active{%endif%}">Home</a>
       </li>
       <li class="nav-item">
-        <a href="/contacts" class="nav-link">Contacts</a>
+        <a href="/contacts" class="nav-link
+         {% set regExp = r/contacts\/?\d?/ %}
+        {%if regExp.test(path)%}active{% endif %}">Contacts</a>
       </li>
     </ul>
 

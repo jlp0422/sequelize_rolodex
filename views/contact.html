@@ -6,8 +6,17 @@
 <h5>Company: {{contact.company}}</h5>
 <h5>Phone Number: {{contact.number}}</h5>
 
+
 <form method="GET" action="/contacts/{{contact.id}}/edit" class="form-group">
-  <button class="btn btn-outline-success">Edit</button>
+    <button class="btn btn-outline-success">Edit</button>
 </form>
+
+<form method="POST" action="/contacts/{{contact.id}}?_method=DELETE" class="form-group">
+  <button class="btn btn-outline-danger">Delete</button>
+</form>
+
+<p>
+  <a href="/contacts">&laquo; Back to all contacts</a>
+</p>
 
 {% endblock %}
