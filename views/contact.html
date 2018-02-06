@@ -1,0 +1,13 @@
+{% extends './layout.html' %}
+
+{% block content %}
+
+<h2>Name: {{contact.firstName}} {{contact.lastName}}</h2>
+<h5>Company: {{contact.company}}</h5>
+<h5>Phone Number: {{contact.number}}</h5>
+
+<form method="GET" action="/contacts/{{contact.id}}/edit" class="form-group">
+  <button class="btn btn-outline-success">Edit</button>
+</form>
+
+{% endblock %}

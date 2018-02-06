@@ -1,0 +1,23 @@
+{% extends './layout.html' %}
+
+{% block content %}
+
+<form method="POST" action="/contacts/{{contact.id}}/edit?_method=PATCH" class="form-group">
+  <h2>Name: {{contact.firstName}} {{contact.lastName}}</h2>
+    <input type="text" name="firstName" placeholder="{{contact.firstName}}">
+    <input type="text" name="lastName" placeholder="{{contact.lastName}}">
+  <h5>Company: {{contact.company}}</h5>
+    <input type="text" name="company" placeholder="{{contact.company}}">
+  <h5>Phone Number: {{contact.number}}</h5>
+    <input type="number" name="number" placeholder="{{contact.number}}">
+  <br><br>
+    <button class="btn btn-outline-success">Update</button>
+</form>
+
+<br>
+
+<a href="/contacts/{{contact.id}}"><button class="btn btn-outline-secondary">Cancel</button></a>
+<br><br>
+<p><a href="/contacts">&laquo; Back to all contacts</a></p>
+
+{% endblock %}
