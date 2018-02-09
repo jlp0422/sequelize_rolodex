@@ -3,10 +3,28 @@ const pg = require('pg')
 const _conn = new Sequelize(process.env.DATABASE_URL);
 
 const Contact = _conn.define('contact', {
-  firstName: Sequelize.STRING,
-  lastName: Sequelize.STRING,
-  company: Sequelize.STRING,
-  number: Sequelize.BIGINT,
+  firstName: {
+    type: Sequelize.STRING,
+  },
+  lastName: {
+    type: Sequelize.STRING
+  },
+  company: {
+    type: Sequelize.STRING
+  },
+  number: {
+    type: Sequelize.BIGINT,
+    validate: {
+      isNumeric: true,
+      isInt: true,
+    }
+  },
+  email: {
+    type: Sequelize.STRING,
+    validate: {
+      isEmail: true
+    }
+  }
 });
 
 const sync = () => {
