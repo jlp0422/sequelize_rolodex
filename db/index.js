@@ -7,31 +7,27 @@ const _conn = new Sequelize(process.env.DATABASE_URL, {
 const Contact = _conn.define('contact', {
   firstName: {
     type: Sequelize.STRING,
-    allowNull: true
     // add not allow null/empty
   },
   lastName: {
     type: Sequelize.STRING,
-    allowNull: true
     // add not allow null/empty
   },
   company: {
     type: Sequelize.STRING,
-    allowNull: true
   },
   number: {
     type: Sequelize.STRING,
-    validate: {
-      is: /^[0-9]+$/,
-    }
+    // validate: {
+    //   is: /^[0-9]+$/,
+    //   len: 10,
+    // }
   },
   email: {
     type: Sequelize.STRING,
-    validate: {
-      isEmail: true,
-      notNull: true,
-      notEmpty: true,
-    }
+    // validate: {
+    //   isEmail: true,
+    // }
   }
 });
 
