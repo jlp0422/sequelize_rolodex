@@ -23,7 +23,8 @@ app.post('/', (req, res, next) => {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     company: req.body.company,
-    number: req.body.number
+    number: req.body.number,
+    email: req.body.email
   })
   .then( () => res.redirect('/contacts'))
   .catch( err => next(err))
