@@ -1,0 +1,16 @@
+{% extends './layout.html' %}
+
+{% block content %}
+{% if error.errors[0].type === 'Validation error' %}
+<h3>Uh oh, looks like you hit a {{error.errors[0].type}} on the {{error.errors[0].path}} field.</h3>
+<h4>Message: {{error.errors[0].message}}</h4>
+<br>
+<h5>Here are some tips to help you avoid these in the future:</h5>
+<ul>
+  <li>Make sure all fields are filled out</li>
+  <li>Make sure the phone number field contains exactly 10 numbers (and only numbers!)</li>
+  <li>Make sure the email field contains a valid email</li>
+</ul>
+<a href="/contacts">Back to contacts page &raquo;</a>
+{% endif %}
+{% endblock %}

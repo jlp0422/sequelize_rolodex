@@ -28,10 +28,10 @@ const Contact = _conn.define('contact', {
   },
   number: {
     type: Sequelize.STRING,
-    // validate: {
-    //   is: /^[0-9]+$/,
-    //   len: 10,
-    // }
+    validate: {
+      is: /^[0-9]+$/,
+      len: 10,
+    }
   },
   email: {
     type: Sequelize.STRING,

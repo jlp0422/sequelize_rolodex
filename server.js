@@ -24,15 +24,19 @@ app.use('/contacts', require('./routes/contacts.js'));
 app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
 
-
-db.sync()
-  .then(() => db.seed());
-
 app.get('/', (req, res, next) => {
   res.render('index', {title: 'Home', pageh1: 'Contact Application'})
 })
 
-const port = process.env.PORT || 3000;
+app.use((err, req, res, next) => {
+  // res.send(err)
+  console.log(err)
+  res.render('error', {error: err, pageh1: 'Error'})
+  .catch(next)
+})
 
+const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`listening on port ${port}`))
 
+db.sync()
+  .then(() => db.seed());

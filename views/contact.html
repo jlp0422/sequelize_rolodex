@@ -2,19 +2,20 @@
 
 {% block content %}
 
-<h2>{{contact.fullName}}</h2>
-<h4>{{contact.company}}</h4>
-<h5>{{ contact.email }}</h5>
-<h5>{{contact.formattedPhone}}</h5>
+<h2 class="contact-info">{{contact.fullName}}</h2>
+<h4 class="contact-info">{{contact.company}}</h4>
+<h5 class="contact-info">{{ contact.email }}</h5>
+<h5 class="contact-info">{{contact.formattedPhone}}</h5>
 
-
-<form method="GET" action="/contacts/{{contact.id}}/edit" class="form-group">
+<div class="flex" style="padding:20px 0px;">
+  <a style="margin-right:20px" href="/contacts/{{contact.id}}/edit">
     <button class="btn btn-outline-success">Edit</button>
-</form>
+  </a>
 
-<form method="POST" action="/contacts/{{contact.id}}?_method=DELETE" class="form-group">
-  <button class="btn btn-outline-danger">Delete</button>
-</form>
+  <form method="POST" action="/contacts/{{contact.id}}?_method=DELETE" class="form-group">
+    <button class="btn btn-outline-danger">Delete</button>
+  </form>
+</div>
 
 <p>
   <a href="/contacts">&laquo; Back to all contacts</a>

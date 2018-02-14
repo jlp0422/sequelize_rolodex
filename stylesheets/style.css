@@ -1,7 +1,19 @@
+.container {
+  margin-bottom: 40px;
+}
+
 .flex {
   display: flex;
 }
 
+.flex-two-button {
+  padding: 20px 0px;
+}
+
 .contactName {
   font-size: 20px;
+}
+
+.contact-info {
+  margin:10px 0px;
 }
