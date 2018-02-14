@@ -3,29 +3,51 @@
 {% block content %}
 
 <form method="POST" action="/contacts" style="margin-bottom:15px;" class="form-group">
-  <label>First Name</label>
-    <input type="text" name="firstName" />
-  <label>Last Name</label>
-    <input type="text" name="lastName" />
-  <label>Company</label>
-    <input type="text" name="company" />
-  <label>Phone Number</label>
-    <input type="tel" name="number" />
-  <label>Email</label>
-    <input type="text" name="email" />
-  <button class="btn btn-outline-primary">Add Contact</button>
+  <div class="row">
+    <div class="form-group col-md-4">
+      <label>First Name</label>
+      <input class="form-control" type="text" name="firstName" />
+    </div>
+    <div class="form-group col-md-5">
+      <label>Last Name</label>
+      <input class="form-control" type="text" name="lastName" />
+    </div>
+    <div class="form-group col-md-3">
+      <label>Phone Number</label>
+      <input class="form-control" type="tel" name="number" />
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label>Company</label>
+      <input class="form-control" type="text" name="company" />
+    </div>
+    <div class="form-group col-md-6">
+      <label>Email</label>
+      <input class="form-control" type="text" name="email" />
+    </div>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-outline-primary mb-2">Add Contact</button>
+  </div>
+
 </form>
 
 <ul class="list-group">
   {% for contact in contacts %}
-    <form method="GET" action="/contacts/{{contact.id}}/edit" class="form-group">
       <li class="list-group-item">
-        <a href="/contacts/{{contact.id}}"><strong>{{contact.firstName}} {{contact.lastName}}</strong></a>
-        &nbsp;&nbsp;
-        <button class="btn btn-outline-success">Edit</button>
-        &nbsp;&nbsp;
+        <a class="contactName" href="/contacts/{{contact.id}}"><strong>{{contact.fullName}}</strong></a>
+        <p>{{contact.company}}</p>
+        <div class="flex">
+          <a style="margin-right:20px" href="/contacts/{{contact.id}}/edit"><button class="btn btn-outline-success">Edit</button></a>
+          <form method="POST" action="/contacts/{{contact.id}}?_method=DELETE" class="form-group">
+            <button class="btn btn-outline-danger">Delete</button>
+          </form>
+        </div>
       </li>
-    </form>
+
+
+
     {% endfor %}
 </ul>
 

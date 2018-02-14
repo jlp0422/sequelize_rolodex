@@ -18,6 +18,7 @@ app.use((req, res, next) => {
 })
 
 app.use('/vendor', express.static(path.join(__dirname, 'node_modules')));
+app.use('/vendor', express.static(path.join(__dirname, 'stylesheets')));
 app.use('/contacts', require('./routes/contacts.js'));
 
 app.set('view engine', 'html');
