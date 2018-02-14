@@ -1,6 +1,7 @@
 {% extends './layout.html' %}
 
 {% block content %}
+
 {% if error.errors[0].type === 'Validation error' %}
 <h3>Uh oh, looks like you hit a {{error.errors[0].type}} on the {{error.errors[0].path}} field.</h3>
 <h4>Message: {{error.errors[0].message}}</h4>
@@ -12,5 +13,9 @@
   <li>Make sure the email field contains a valid email</li>
 </ul>
 <a href="/contacts">Back to contacts page &raquo;</a>
+{% endif %}
+
+{% if error.errors[0].type === 'Validation error' %}
+<p>Hello</p>
 {% endif %}
 {% endblock %}

@@ -28,11 +28,25 @@ app.get('/', (req, res, next) => {
   res.render('index', {title: 'Home', pageh1: 'Contact Application'})
 })
 
+// app.use('/error', (req, res, next) => {
+//   res.render('error', {title: 'Error', pageh1: 'Error'})
+// })
+
+// app.get('/:slash', (req, res, next) => {
+//   res.redirect('error')
+//   .catch(next)
+// })
+
 app.use((err, req, res, next) => {
-  // res.send(err)
   console.log(err)
-  res.render('error', {error: err, pageh1: 'Error'})
-  .catch(next)
+  if (err.name === 'SequelizeValidationError') {
+    res.render('error', {error: err, pageh1: 'Error', title: 'Error'})
+    .catch(next)
+  }
+  else {
+    res.sendStatus(404)
+  }
+
 })
 
 const port = process.env.PORT || 3000;
