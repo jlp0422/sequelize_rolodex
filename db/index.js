@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const pg = require('pg')
+const pg = require('pg');
 const _conn = new Sequelize(process.env.DATABASE_URL, {
   logging: false
 });

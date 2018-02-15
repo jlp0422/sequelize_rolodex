@@ -8,7 +8,6 @@ module.exports = app;
 
 app.get('/', (req, res, next) => {
   Contact.findAll()
-    // .then(contacts => res.send(contacts))
     .then( contacts => res.render('contacts', {title: 'Contacts', pageh1: 'Contacts', contacts}))
     .catch( err => next(err))
 });

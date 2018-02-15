@@ -30,15 +30,6 @@ app.get('/', (req, res, next) => {
   res.render('index', {title: 'Home', pageh1: 'Contact Application'})
 })
 
-// app.use('/error', (req, res, next) => {
-//   res.render('error', {title: 'Error', pageh1: 'Error'})
-// })
-
-// app.get('/:slash', (req, res, next) => {
-//   res.redirect('error')
-//   .catch(next)
-// })
-
 app.get('/randomize', (req, res, next) => {
   Contact.create({
     firstName: faker.name.firstName(),
@@ -47,8 +38,8 @@ app.get('/randomize', (req, res, next) => {
     number: faker.phone.phoneNumberFormat().split('-').join(''),
     email: faker.internet.email(),
   })
-    .then(() => res.redirect('/contacts'))
-    .catch(next)
+  .then(() => res.redirect('/contacts'))
+  .catch(next)
 })
 
 app.use((err, req, res, next) => {
@@ -57,10 +48,7 @@ app.use((err, req, res, next) => {
     res.render('error', {error: err, pageh1: 'Error', title: 'Error'})
     .catch(next)
   }
-  else {
-    res.sendStatus(404)
-  }
-
+  else res.sendStatus(404)
 })
 
 const port = process.env.PORT || 3000;
