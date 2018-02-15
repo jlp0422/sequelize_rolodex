@@ -16,32 +16,26 @@ app.get('/', (req, res, next) => {
 app.get('/:id', (req, res, next) => {
   Contact.findById(req.params.id)
     .then(contact => res.render('contact', { title: `${contact.fullName}`, pageh1: `Contact Information`, contact}))
-    .catch(err => next(err))
+    .catch(next)
 });
 
 app.post('/', (req, res, next) => {
-  Contact.create({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    company: req.body.company,
-    number: req.body.number,
-    email: req.body.email
-  })
+  Contact.create(req.body)
   .then( () => res.redirect('/contacts'))
-  .catch( err => next(err))
+  .catch(next)
 })
 
 app.delete('/:id', (req, res, next) => {
   Contact.findById(req.params.id)
     .then(contact => contact.destroy())
     .then(() => res.redirect('/contacts'))
-    .catch(err => next(err))
+    .catch(next)
 })
 
 app.get('/:id/edit', (req, res, next) => {
   Contact.findById(req.params.id)
     .then( contact => res.render('edit', { title: `${contact.firstName} ${contact.lastName}`, pageh1: `Edit Information`, contact}))
-    .catch( err => next(err));
+    .catch(next)
 })
 
 app.patch('/:id/edit', (req, res, next) => {
@@ -55,5 +49,5 @@ app.patch('/:id/edit', (req, res, next) => {
     return contact.save()
     })
     .then( () => res.redirect(`/contacts/${req.params.id}`))
-    .catch( err => next(err))
+    .catch(next)
 })

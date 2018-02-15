@@ -5,7 +5,9 @@ const app = express();
 const path = require('path');
 const nunjucks = require('nunjucks');
 const db = require('./db');
-const Contact = db.models.Contact;
+const { Contact } = db.models;
+const faker = require('faker')
+
 
 app.use(require('body-parser').urlencoded());
 app.use(require('method-override')('_method'));
@@ -36,6 +38,18 @@ app.get('/', (req, res, next) => {
 //   res.redirect('error')
 //   .catch(next)
 // })
+
+app.get('/randomize', (req, res, next) => {
+  Contact.create({
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    company: faker.company.companyName(),
+    number: faker.phone.phoneNumberFormat().split('-').join(''),
+    email: faker.internet.email(),
+  })
+    .then(() => res.redirect('/contacts'))
+    .catch(next)
+})
 
 app.use((err, req, res, next) => {
   console.log(err)
